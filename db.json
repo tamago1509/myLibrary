@@ -32,5 +32,12 @@
       "email": "linh@gmail.com",
       "id": "dHq0036RO"
     }
+  ],
+  "transactions": [
+    {
+      "id": "6t-QrOwPa",
+      "userId": "dHq0036RO",
+      "bookId": "RUgTxE1vm"
+    }
   ]
 }

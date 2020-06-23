@@ -47,8 +47,22 @@ app.get('/books/:id/update',(req, res)=>{
 })	
 
 
+app.get('/transactions/create',(req, res)=>{
+	res.render('transactions/create',{
+		users: db.get('users').value(),
+		books: db.get('books').value()
+	})
+})
 
-
+app.post('/transactions/create',(req, res)=>{
+	let data = {
+		id:shortid.generate(),
+		userId: req.body.userId,
+		bookId: req.body.bookId
+	}
+	db.get('transactions').push(data).write();
+	res.redirect('create');
+})
 app.post('/books/:id/update',(req, res)=>{
 	var updateId = req.params.id;
 	db.get('books').find({ id:updateId}).assign({ title : req.body.title }).write();
