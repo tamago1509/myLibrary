@@ -1,19 +1,18 @@
 var express = require('express');
 var app = express();
 var port= 5000;
-var low= require('lowdb');
-var FileSync= require('lowdb/adapters/FileSync');
-var adapter = new FileSync('db.json');
+var db = require('./db');
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
+var userRoute = require('./router/users.route');
 
-var db= low(adapter);
-db.defaults({ books: [], users:[] }).write();
+
 
 app.set('view engine','pug');
 app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use('/users', userRoute);
 
 
 app.get('/',(req, res)=>{
@@ -47,43 +46,7 @@ app.get('/books/:id/update',(req, res)=>{
 
 })	
 
-app.get('/users/index',(req, res)=>{
-	res.render('users/index',{
-		users: db.get('users').value()
-	})
-})
-app.get('/users/:id/delete',(req, res)=>{
-	var deleteUser = req.params.id;
-	db.get('users')
-	.remove(user=> user.id == deleteUser)
-	.write();
-	res.redirect('/users/index');
-})
 
-app.get('/users/:id/update',(req, res)=>{
-	res.render('users/update',{
-		id: req.params.id
-	})
-})
-
-
-
-
-app.post('/users/:id/update',(req, res)=>{
-	var updateId = req.params.id;
-	db.get('users')
-	.find({ id: updateId})
-	.assign({ name: req.body.name, email: req.body.email})
-	.write();
-	res.redirect('/users/index')
-})
-
-
-app.post('/users/index',(req, res)=>{
-	req.body.id =shortid.generate();
-	db.get('users').push(req.body).write();
-	res.redirect('index')
-})
 
 
 app.post('/books/:id/update',(req, res)=>{
