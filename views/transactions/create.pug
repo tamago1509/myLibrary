@@ -13,3 +13,8 @@ form(action ="/transactions/create" method="POST")
 			option(value=book.id)=book.title
 	button Borrow
 
+ul
+	each tran in transactions
+		li= tran.id
+		span &nbsp;
+		a(href='/transactions/'+ tran.id + "/complete") Complete

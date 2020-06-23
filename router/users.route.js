@@ -14,4 +14,5 @@ router.post('/:id/update', controller.postUpdate);
 
 router.post('/index',controller.postIndex);
 
+
 module.exports = router;

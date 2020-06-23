@@ -1,0 +1,9 @@
+h1 Transactions Management
+
+form(action="/transactions/"+ id+ "/complete" method="POST")
+	label Transaction: 
+	h3 #{id}
+	select(name="isComplete")
+		option(value=1) True
+		option(value=0) False
+	button Confirm

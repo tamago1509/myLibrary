@@ -50,15 +50,31 @@ app.get('/books/:id/update',(req, res)=>{
 app.get('/transactions/create',(req, res)=>{
 	res.render('transactions/create',{
 		users: db.get('users').value(),
-		books: db.get('books').value()
+		books: db.get('books').value(),
+		transactions: db.get('transactions').value()
+
 	})
+})
+app.get('/transactions/:id/complete',(req, res)=>{
+	res.render('transactions/complete',{
+		id: req.params.id
+	})
+})
+app.post('/transactions/:id/complete',(req, res)=>{
+	var completeId= req.params.id;
+	let data =  req.body.isComplete ? true : false
+	db.get('transactions').find({id: completeId}).assign({isComplete: data}).write();
+	
+	//redirect cần 1 tham số là 1 url
+	res.redirect('/transactions/create') 
 })
 
 app.post('/transactions/create',(req, res)=>{
 	let data = {
 		id:shortid.generate(),
 		userId: req.body.userId,
-		bookId: req.body.bookId
+		bookId: req.body.bookId,
+		isComplete: false
 	}
 	db.get('transactions').push(data).write();
 	res.redirect('create');
