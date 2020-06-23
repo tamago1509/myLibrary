@@ -5,6 +5,7 @@ var low= require('lowdb');
 var FileSync= require('lowdb/adapters/FileSync');
 var adapter = new FileSync('db.json');
 var bodyParser = require('body-parser');
+var shortid = require('shortid');
 
 var db= low(adapter);
 db.defaults({ books: [] }).write();
@@ -22,11 +23,8 @@ app.get('/',(req, res)=>{
 })
 
 app.post('/books/index',(req, res)=>{
-	db.get('books').push({
-		id:db.get('books').value().length+1,
-		title: req.body.title,
-		desc: req.body.desc
-	}).write();
+	req.body.id = shortid.generate();
+	db.get('books').push(req.body).write();
 	res.redirect('/'); //sua lai
 })
 // update sách
@@ -38,29 +36,21 @@ app.get('/books/:id/delete',(req, res)=>{
 	.remove(book=>
 		book.id == deleteId
 	).write();
-	var temp = db.get('books').value().map(book=>{
-		if(book.id > deleteId){
-			book.id--;
-		}
-		return book;
-	})
-	db.set('books',temp).write();
-
 	res.redirect('/');
 	
 })
 app.get('/books/:id/update',(req, res)=>{
-	res.render('books/update')
-	var updateId = parseInt(req.params.id);
-	db.get('books').remove(book=> book.id ==updateId).write();
-	db.get('books').push({
-		id: updateId,
-		title: req.body.title
-	}).write();
-	res.redirect('/books/index');
+	res.render('books/update', {
+		id: req.params.id
+	})
+
 })	
 
-
+app.post('/books/:id/update',(req, res)=>{
+	var updateId = req.params.id;
+	db.get('books').find({ id:updateId}).assign({ title : req.body.title }).write();
+	res.redirect("/")
+})
 
 
 
