@@ -1,11 +1,6 @@
 {
   "books": [
     {
-      "title": "Nắng mới",
-      "desc": "Truyện ngắn",
-      "id": "JK9UgkynC"
-    },
-    {
       "title": "Friendship",
       "desc": "Truyện ngắn",
       "id": "RUgTxE1vm"
@@ -14,6 +9,11 @@
       "title": "Kỹ năng văn phòng",
       "desc": "Kỹ năng sống",
       "id": "Bzwijlc1-"
+    },
+    {
+      "title": "Bụi đường tuổi trẻ",
+      "desc": "Truyện ngắn",
+      "id": "lq7jb-0wu"
     }
   ],
   "users": [
