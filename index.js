@@ -5,14 +5,27 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
 var userRoute = require('./router/users.route');
+var favicon = require('serve-favicon');
+var path = require('path')
+var iconPath= path.join(__dirname, "public","favicon.ico")
+var options = {
+	maxAge: 200 *60 *60 *24 *1000
+}
 
-
+app.use(favicon(iconPath, options));
+app.use(favicon(path.join(__dirname, 'public', 'images' , 'favicon.ico')))
+app.use(express.static(path.join(__dirname, 'public')))
+// app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.set('view engine','pug');
 app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+
+
 app.use('/users', userRoute);
+
 
 
 app.get('/',(req, res)=>{
