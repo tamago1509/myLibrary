@@ -1,20 +1,24 @@
-h1 This is my library
-h2
-	a(href='/users/index') Users Management
+extends ../layout/common.pug
 
-form(action="/books/index", method="POST")
-	label Title: 
-	span &nbsp;
-	input(type="text", name="title")
-	label Description:
-	span &nbsp;
-	input(type="text", name="desc")
-	button Create
+block content
 
-ul
-	each book in books
-		li= book.title
+	h1 This is my library
+	h2
+		a(href='/users/index') Users Management
+
+	form(action="/books/index", method="POST",class="d-flex m-4")
+		label Title: 
 		span &nbsp;
-		a(href="/books/" + book.id + "/update") Update
+		input(type="text", name="title", class="form-control")
+		label Description:
 		span &nbsp;
-		a(href="/books/" + book.id + "/delete") Delete
+		input(type="text", name="desc", class="form-control")
+		button(class="btn btn-primary mr-5") Create
+
+	ul
+		each book in books
+			li= book.title
+			span &nbsp;
+			a(href="/books/" + book.id + "/update") Update
+			span &nbsp;
+			a(href="/books/" + book.id + "/delete") Delete

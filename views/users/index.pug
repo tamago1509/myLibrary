@@ -1,18 +1,22 @@
-h1 List users
-form(action="/users/index", method="POST")
-	label User Name:
-	span &nbsp;
-	input(type="text", name="name")
-	label User Email:
-	span &nbsp;
-	input(type="email",name="email")
-	button Create
-ul
-	each user in users 
-		li= user.name
+extends ../layout/common.pug
+
+block content	
+
+	h1(class="m-3") List users
+	form(action="/users/index", method="POST" class="d-flex m-3")
+		label User Name:
 		span &nbsp;
-		a(href="/users/"+ user.id + "/update") Update
+		input(type="text", name="name" class="form-control")
+		label User Email:
 		span &nbsp;
-		a(href="/users/"+ user.id + "/delete") Delete
+		input(type="email",name="email" class="form-control")
+		button(class="btn btn-primary") Create
+	ul(class="m-3")
+		each user in users 
+			li= user.name
+			span &nbsp;
+			a(href="/users/"+ user.id + "/update") Update
+			span &nbsp;
+			a(href="/users/"+ user.id + "/delete") Delete
 
 

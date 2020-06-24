@@ -1,9 +1,12 @@
-h1 Transactions Management
+extends ../layout/common.pug
 
-form(action="/transactions/"+ id+ "/complete" method="POST")
-	label Transaction: 
-	h3 #{id}
-	select(name="isComplete")
-		option(value=1) True
-		option(value=0) False
-	button Confirm
+block content	
+	h1(class="text-center") Transactions Management
+	p(class="text-center text-primary") Transaction: 
+	h3(class="text-center") #{id}
+	form(action="/transactions/"+ id+ "/complete" method="POST" class=" d-flex m-3 justify-content-center")
+		
+		select(name="isComplete" class="form-control w-25")
+			option(value=1) True
+			option(value=0) False
+		button(class="btn btn-primary") Confirm

@@ -1,20 +1,24 @@
-h1 Borrow a book from the library
 
-form(action ="/transactions/create" method="POST")
-	label UserName:
-	span &nbsp;
-	select(name="userId")
-		each user in users
-			option(value=user.id)=user.name
-	label BookTitle: 
-	span &nbsp;
-	select(name="bookId")
-		each book in books
-			option(value=book.id)=book.title
-	button Borrow
+extends ../layout/common.pug
 
-ul
-	each tran in transactions
-		li= tran.id
+block content
+	h1 Borrow a book from the library
+
+	form(action ="/transactions/create" method="POST" class="d-flex m-3")
+		label(class="mr-3") UserName:
 		span &nbsp;
-		a(href='/transactions/'+ tran.id + "/complete") Complete
+		select(name="userId")
+			each user in users
+				option(value=user.id)=user.name
+		label(class="mr-3") BookTitle: 
+		span &nbsp;
+		select(name="bookId")
+			each book in books
+				option(value=book.id)=book.title
+		button(class="btn btn-primary") Borrow
+
+	ul(class="mr-3")
+		each tran in transactions
+			li= tran.id
+			span &nbsp;
+			a(href='/transactions/'+ tran.id + "/complete") Complete

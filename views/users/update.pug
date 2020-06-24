@@ -1,7 +1,11 @@
-h1 Update User Info
-form(method="POST" action="/users/" + id + "/update")
-	label Update UserName
-	input(type="text" name="name")
-	label Update UserEmail
-	input(type="email" name="email")
-	button Update
+extends ../layout/common.pug
+
+block content
+
+	h1(class="text-center text-primary") Update User Info
+	form(method="POST" action="/users/" + id + "/update" class="d-flex m-3 justify-content-center")
+		label(class="m-3") Update UserName
+		input(type="text" name="name")
+		label(class="m-3") Update UserEmail
+		input(type="email" name="email")
+		button(class="btn btn-primary") Update
