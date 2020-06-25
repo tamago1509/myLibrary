@@ -3,7 +3,7 @@ extends ../layout/common.pug
 block content
 
 	h1(class="text-center text-primary") Update User Info
-	form(method="POST" action="/users/" + id + "/update" class="d-flex m-3 justify-content-center")
+	form(method="POST" action="/users/index" + id + "/update" class="d-flex m-3 justify-content-center")
 		label(class="m-3") Update UserName
 		input(type="text" name="name")
 		label(class="m-3") Update UserEmail

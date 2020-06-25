@@ -1,8 +1,8 @@
 var express = require('express');
-var router = express.Router();
-
+var validate = require('../validate/user.validate');
 var controller = require('../controllers/users.controllers');
 
+var router = express.Router();
 
 router.get('/index',controller.index);
 
@@ -12,7 +12,7 @@ router.get('/:id/update',controller.update);
 
 router.post('/:id/update', controller.postUpdate);
 
-router.post('/index',controller.postIndex);
+router.post('/index', validate.postIndex, controller.postIndex);
 
 
 module.exports = router;

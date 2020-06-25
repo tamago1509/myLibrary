@@ -38,16 +38,6 @@
   ],
   "users": [
     {
-      "name": "Nguyễn Thị Hằng",
-      "email": "hawngfngo@gmail.com",
-      "id": "aa4DJRf2A"
-    },
-    {
-      "name": "Lê Hiền",
-      "email": "hien@gmail.com",
-      "id": "WVnCotuxN"
-    },
-    {
       "name": "Lê Thùy Linh",
       "email": "linh@gmail.com",
       "id": "dHq0036RO"
@@ -56,6 +46,11 @@
       "name": "Dương Chung",
       "email": "chung@gmail.com",
       "id": "x2Gua3mEt"
+    },
+    {
+      "name": "Lê Thị Hiền",
+      "email": "hien@gmail.com",
+      "id": "yZ7ESD1vq"
     }
   ],
   "transactions": [
