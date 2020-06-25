@@ -2,7 +2,10 @@ extends ../layout/common.pug
 
 block content	
 
-	h1(class="m-3") List users
+	h1 List users
+	if errors
+		each error in errors
+			.alert.alert-danger= error
 	form(action="/users/index", method="POST" class="d-flex m-3")
 		label User Name:
 		span &nbsp;
@@ -11,7 +14,9 @@ block content
 		span &nbsp;
 		input(type="email",name="email" class="form-control")
 		button(class="btn btn-primary") Create
-	ul(class="m-3")
+	
+
+	ul
 		each user in users 
 			li= user.name
 			span &nbsp;
