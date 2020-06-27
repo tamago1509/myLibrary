@@ -7,37 +7,52 @@ var shortid = require('shortid');
 var userRoute = require('./router/users.route');
 var favicon = require('serve-favicon');
 var path = require('path')
+var cookieParser = require('cookie-parser')
+
+
+
+
+//config
 var iconPath= path.join(__dirname, "public","favicon.ico")
 var options = {
 	maxAge: 200 *60 *60 *24 *1000
 }
+
+
+// import controllers
+var cookieControllers = require('./controllers/cookie.controller');
+
+//import middlewares
+var cookieMiddlewares= require('./middlewares/cookie.middlewares')
+
+
+
 
 app.use(favicon(iconPath, options));
 app.use(favicon(path.join(__dirname, 'public', 'images' , 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public')))
 // app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
+//set view engine
 app.set('view engine','pug');
 app.set('views', './views');
+
+//body-middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser())
 
-
-
+//routing
 app.use('/users', userRoute);
 
 
 
-app.get('/',(req, res)=>{
-	res.render('books/index', {
-		books : db.get("books").value()
-	})
-})
+app.get('/', cookieMiddlewares.countCookie, cookieControllers.index) 
 
 app.post('/books/index',(req, res)=>{
 	req.body.id = shortid.generate();
 	db.get('books').push(req.body).write();
-	res.redirect('/'); //sua lai
+	res.redirect('/'); 
 })
 // update sách
 
@@ -89,6 +104,7 @@ app.post('/transactions/create',(req, res)=>{
 		bookId: req.body.bookId,
 		isComplete: false
 	}
+
 	db.get('transactions').push(data).write();
 	res.redirect('create');
 })
