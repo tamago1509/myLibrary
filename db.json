@@ -41,25 +41,25 @@
       "name": "Lê Thùy Linh",
       "email": "linh@gmail.com",
       "id": "dHq0036RO",
-      "password": "123"
+      "password": "'827ccb0eea8a706c4c34a16891f84e7b'"
     },
     {
       "name": "Dương Chung",
       "email": "chung@gmail.com",
       "id": "x2Gua3mEt",
-      "password": "1234"
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     },
     {
       "name": "Lê Thị Hiền",
       "email": "hien@gmail.com",
       "id": "yZ7ESD1vq",
-      "password": "12345"
+      "password": "827ccb0eea8a706c4c34a16891f84e7b"
     },
     {
       "name": "Dương Thị Ngọc",
       "email": "ngocdt.sunrise@gmail.com",
       "id": "-c3AgBLI7",
-      "password": "haoiungoc",
+      "password": "1aeeeaa430e37b7f2ed6c0db5f5b5841",
       "isAdmin": true
     }
   ],
