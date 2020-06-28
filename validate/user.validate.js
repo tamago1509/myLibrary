@@ -1,10 +1,11 @@
 var db = require('../db');
 module.exports.postIndex = function(req, res, next){
 	var errors = [];
+
 	if(!req.body.name){
 		errors.push('Name is required.');
 	}
-	if(req.body.name.length>30){
+	if(req.body.name.length > 30){
 		errors.push('Name is over 30 characters, please check it');
 	}
 	if(!req.body.email){
@@ -13,7 +14,8 @@ module.exports.postIndex = function(req, res, next){
 	if(errors.length){
 		res.render('users/index',{
 			users: db.get('users').value(),
-			errors : errors
+			errors : errors,
+			values: req.body
 		})
 		return;
 	}

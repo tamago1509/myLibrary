@@ -2,9 +2,10 @@ var express = require('express');
 var validate = require('../validate/user.validate');
 var controller = require('../controllers/users.controllers');
 
+
 var router = express.Router();
 
-router.get('/index',controller.index);
+router.get('/index', controller.index);
 
 router.get('/:id/delete',controller.delete);
 

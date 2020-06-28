@@ -1,6 +1,6 @@
 module.exports.countCookie= function(req, res, next){
 
-	console.log(req.cookies.cookieName)
+	
 	
 	if(
 		req.cookies.cookieName 
@@ -22,7 +22,7 @@ module.exports.countCookie= function(req, res, next){
 
 	next()
 
-	
+
 	// //check cái cookieName
 	//lấy counter từ cookie 
 	// //nếu ko có cookie name thì next

@@ -4,21 +4,24 @@ extends ../layout/common.pug
 block content
 	h1 Borrow a book from the library
 
-	form(action ="/transactions/create" method="POST" class="d-flex m-3")
+	form(method="POST" class="d-flex m-3")
 		label(class="mr-3") UserName:
 		span &nbsp;
-		select(name="userId")
+		select(name="userName")
 			each user in users
-				option(value=user.id)=user.name
+				option(value=user.name)=user.name
 		label(class="mr-3") BookTitle: 
 		span &nbsp;
-		select(name="bookId")
+		select(name="bookTitle")
 			each book in books
-				option(value=book.id)=book.title
-		button(class="btn btn-primary") Borrow
+				option(value=book.title)=book.title
+		if !hide
+			button(class="btn btn-primary") Borrow
 
 	ul(class="mr-3")
 		each tran in transactions
-			li= tran.id
+			li= tran.bookTitle+ " _ " + tran.userName
 			span &nbsp;
-			a(href='/transactions/'+ tran.id + "/complete") Complete
+			if !hide
+				a(href='/transactions/'+ tran.id + "/complete") Complete
+			span= "_" + tran.isComplete

@@ -5,6 +5,8 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
 var userRoute = require('./router/users.route');
+var authRoute = require('./router/auth.route');
+var transactionsRoute = require('./router/transactions.route');
 var favicon = require('serve-favicon');
 var path = require('path')
 var cookieParser = require('cookie-parser')
@@ -21,9 +23,11 @@ var options = {
 
 // import controllers
 var cookieControllers = require('./controllers/cookie.controller');
+var transactionsControllers = require('./controllers/transaction.controller');
 
 //import middlewares
 var cookieMiddlewares= require('./middlewares/cookie.middlewares')
+var authMiddleware= require('./middlewares/auth.middleware');
 
 
 
@@ -43,7 +47,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser())
 
 //routing
-app.use('/users', userRoute);
+app.use('/users',authMiddleware.requireAuth, userRoute);
+app.use('/auth', authRoute);
+app.use('/transactions', transactionsRoute);
+
 
 
 
@@ -75,39 +82,9 @@ app.get('/books/:id/update',(req, res)=>{
 })	
 
 
-app.get('/transactions/create',(req, res)=>{
-	res.render('transactions/create',{
-		users: db.get('users').value(),
-		books: db.get('books').value(),
-		transactions: db.get('transactions').value()
 
-	})
-})
-app.get('/transactions/:id/complete',(req, res)=>{
-	res.render('transactions/complete',{
-		id: req.params.id
-	})
-})
-app.post('/transactions/:id/complete',(req, res)=>{
-	var completeId= req.params.id;
-	let data =  req.body.isComplete ? true : false
-	db.get('transactions').find({id: completeId}).assign({isComplete: data}).write();
-	
-	//redirect cần 1 tham số là 1 url
-	res.redirect('/transactions/create') 
-})
 
-app.post('/transactions/create',(req, res)=>{
-	let data = {
-		id:shortid.generate(),
-		userId: req.body.userId,
-		bookId: req.body.bookId,
-		isComplete: false
-	}
 
-	db.get('transactions').push(data).write();
-	res.redirect('create');
-})
 app.post('/books/:id/update',(req, res)=>{
 	var updateId = req.params.id;
 	db.get('books').find({ id:updateId}).assign({ title : req.body.title }).write();

@@ -6,13 +6,16 @@ block content
 	if errors
 		each error in errors
 			.alert.alert-danger= error
-	form(action="/users/index", method="POST" class="d-flex m-3")
+	form(action="/users/index" method="POST" class="d-flex m-3")
 		label User Name:
 		span &nbsp;
 		input(type="text", name="name" class="form-control")
 		label User Email:
 		span &nbsp;
 		input(type="email",name="email" class="form-control")
+		label User Password:
+		span &nbsp;
+		input(type="password",name="password" class="form-control")
 		button(class="btn btn-primary") Create
 	
 

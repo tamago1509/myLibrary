@@ -40,36 +40,58 @@
     {
       "name": "Lê Thùy Linh",
       "email": "linh@gmail.com",
-      "id": "dHq0036RO"
+      "id": "dHq0036RO",
+      "password": "123"
     },
     {
       "name": "Dương Chung",
       "email": "chung@gmail.com",
-      "id": "x2Gua3mEt"
+      "id": "x2Gua3mEt",
+      "password": "1234"
     },
     {
       "name": "Lê Thị Hiền",
       "email": "hien@gmail.com",
-      "id": "yZ7ESD1vq"
+      "id": "yZ7ESD1vq",
+      "password": "12345"
+    },
+    {
+      "name": "Dương Thị Ngọc",
+      "email": "ngocdt.sunrise@gmail.com",
+      "id": "-c3AgBLI7",
+      "password": "haoiungoc",
+      "isAdmin": true
     }
   ],
   "transactions": [
     {
-      "id": "Giv6co7Ai",
-      "userId": "dHq0036RO",
-      "bookId": "oXwpUL9-6",
+      "id": "DUpvGpvoj",
+      "userName": "Lê Thùy Linh",
+      "bookTitle": "Friendship",
       "isComplete": true
     },
     {
-      "id": "7gAAyXKCe",
-      "userId": "x2Gua3mEt",
-      "bookId": "zdUdkkeUr",
-      "isComplete": true
+      "id": "B6bT_iRd0",
+      "userName": "Dương Chung",
+      "bookTitle": "Lớp học lập trình viên của thầy Kayanoki",
+      "isComplete": false
     },
     {
-      "id": "VcUmuQN-W",
-      "userId": "aa4DJRf2A",
-      "bookId": "lq7jb-0wu",
+      "id": "wMipJTrhc",
+      "userName": "Lê Thị Hiền",
+      "bookTitle": "Tớ muốn ăn tụy của cậu",
+      "isComplete": false
+    },
+    {
+      "id": "8FuR6dXoC",
+      "userName": "Lê Thùy Linh",
+      "bookTitle": "Bụi đường tuổi trẻ",
+      "isComplete": false
+    },
+    {
+      "id": "9J2_dL4ei",
+      "userName": "Lê Thùy Linh",
+      "bookTitle": "Code clean",
       "isComplete": false
     }
   ]
