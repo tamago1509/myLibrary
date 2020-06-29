@@ -13,4 +13,5 @@ block content
 		label User Password:
 		span &nbsp;
 		input(type="password",name="password" class="form-control")
-		button(class="btn btn-primary") Login
+		if !hide
+			button(class="btn btn-primary") Login

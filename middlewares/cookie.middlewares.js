@@ -12,7 +12,7 @@ module.exports.countCookie= function(req, res, next){
 		count++
 
 		// console.log(req.cookies)
-		console.log(count)
+		// console.log(count)
 		res.cookie('counter', count)
 	} else {  	//nếu không có thì tạo
 	 	//create cookie

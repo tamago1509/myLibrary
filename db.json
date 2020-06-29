@@ -38,29 +38,35 @@
   ],
   "users": [
     {
-      "name": "Lê Thùy Linh",
-      "email": "linh@gmail.com",
-      "id": "dHq0036RO",
-      "password": "'827ccb0eea8a706c4c34a16891f84e7b'"
-    },
-    {
-      "name": "Dương Chung",
-      "email": "chung@gmail.com",
-      "id": "x2Gua3mEt",
-      "password": "81dc9bdb52d04dc20036dbd8313ed055"
-    },
-    {
-      "name": "Lê Thị Hiền",
-      "email": "hien@gmail.com",
-      "id": "yZ7ESD1vq",
-      "password": "827ccb0eea8a706c4c34a16891f84e7b"
-    },
-    {
       "name": "Dương Thị Ngọc",
       "email": "ngocdt.sunrise@gmail.com",
       "id": "-c3AgBLI7",
-      "password": "1aeeeaa430e37b7f2ed6c0db5f5b5841",
+      "password": "haoiungoc",
       "isAdmin": true
+    },
+    {
+      "id": "8Wv2dLC4X",
+      "name": "Lê Thị Hậu",
+      "email": "hau@gmail.com",
+      "password": "$2b$10$001kgqyK1mSRq7qAGrUdQu5Gcg5omKrXEgDkIVnPJcJolp2RP5wxa"
+    },
+    {
+      "id": "3fUpsacEd",
+      "name": "Lê Thùy Linh",
+      "email": "linh@gmail.com",
+      "password": "$2b$10$..MFJKy9QWBdSlVqTDkU4uLeHesGiUepYvl6oPVOeDW1FOJ4Hg0fu"
+    },
+    {
+      "id": "zDcNsZ6eJ",
+      "name": "Lê Hiền",
+      "email": "hien@gmail.com",
+      "password": "$2b$10$F2/S69bazMu4/l7dkGi7we/nVRm4d3Emy88m8OJ1LoKLWBM.c7MQ6"
+    },
+    {
+      "id": "RTQPpxG9h",
+      "name": "Dương Chung",
+      "email": "chung@gmail.com",
+      "password": "$2b$10$9816uSgVcm67CAcEeja6lulCEWRWskZfXVYyJTDD.7JuxFFOZNpwe"
     }
   ],
   "transactions": [

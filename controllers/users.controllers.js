@@ -1,6 +1,8 @@
 
 var db = require("../db");
-var shortid =require('shortid');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+var shortId = require('shortId');
 
 module.exports.index= function(req, res){
 	res.render('users/index',{
@@ -45,8 +47,17 @@ module.exports.postIndex = function(req, res){
 		})
 	} else {
 	// store into db
-		req.body.id =shortid.generate();
-		db.get('users').push(req.body).write();
-		res.redirect('index')
+		bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    // Store hash in your password DB.
+    		db.get('users').push({
+    			id: shortId.generate(),
+    			name: req.body.name,
+    			email: req.body.email,
+    			password: hash
+    		}).write();
+			res.redirect('index')
+		});
+		
+		
 	}
 }
