@@ -44,7 +44,7 @@ app.set('views', './views');
 //body-middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser())
+app.use(cookieParser('afwbnkb3f8383y3hbnf'))
 
 //routing
 app.use('/users',authMiddleware.requireAuth, userRoute);

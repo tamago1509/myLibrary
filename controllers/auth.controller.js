@@ -31,7 +31,9 @@ module.exports.postLogin = function(req, res){
 	bcrypt.compare(password, user.password, function(err, result) {
 		
 		if(result){
-	    	res.cookie('userId', user.id);
+	    	res.cookie('userId', user.id,{
+	    		signed: true
+	    	});
 			res.redirect('/users/index');
 		} else {
 
