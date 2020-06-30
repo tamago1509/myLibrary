@@ -1,3 +1,5 @@
+require('dotenv').config();
+console.log(process.env.SECTION_SECRETE)
 var express = require('express');
 var app = express();
 var port= 5000;
@@ -44,7 +46,7 @@ app.set('views', './views');
 //body-middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser('afwbnkb3f8383y3hbnf'))
+app.use(cookieParser(process.env.SECTION_SECRETE))
 
 //routing
 app.use('/users',authMiddleware.requireAuth, userRoute);
