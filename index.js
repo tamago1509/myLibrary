@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log(process.env.SECTION_SECRETE)
 var express = require('express');
 var app = express();
 var port= 5000;
@@ -59,7 +58,7 @@ app.use('/transactions', transactionsRoute);
 app.get('/', cookieMiddlewares.countCookie, cookieControllers.index) 
 
 app.post('/books/index',(req, res)=>{
-	req.body.id = shortid.generate();
+	
 	db.get('books').push(req.body).write();
 	res.redirect('/'); 
 })
