@@ -6,25 +6,40 @@ block content
 	if errors
 		each error in errors
 			.alert.alert-danger= error
-	form(action="/users/index" method="POST" class="d-flex m-3")
-		label User Name:
-		span &nbsp;
-		input(type="text", name="name" class="form-control")
-		label User Email:
-		span &nbsp;
-		input(type="email",name="email" class="form-control")
-		label User Password:
-		span &nbsp;
-		input(type="password",name="password" class="form-control")
+	form.m-3( action="/users/index", method="POST", enctype="multipart/form-data" )
+		.form-group
+			label User Name:
+			span &nbsp;
+			input(type="text", name="name" class="form-control")
+		.form-group
+			label User Email:
+			span &nbsp;
+			input(type="email",name="email" class="form-control")
+		.form-group
+			label User Password:
+			span &nbsp;
+			input(type="password",name="password" class="form-control")
+		.form-group
+			label(for='avatar') Avatar
+			input#avatar.form-control-file(name='avatar', type= "file")
+
 		button(class="btn btn-primary") Create
 	
 
-	ul
-		each user in users 
-			li= user.name
-			span &nbsp;
-			a(href="/users/"+ user.id + "/update") Update
-			span &nbsp;
-			a(href="/users/"+ user.id + "/delete") Delete
-
+	table.table
+		thead
+			th Avatar
+			th Name
+			th Update
+			th Delete
+		tbody
+			each user in users
+				tr
+					td
+						img.rounded-circle(src= "/" + user.avatarURL, width = "50",height = "50")
+					td= user.name
+					td
+						a(href="/users/"+ user.id + "/update") Update
+					td
+						a(href="/users/"+ user.id + "/delete") Delete
 

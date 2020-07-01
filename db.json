@@ -307,31 +307,36 @@
       "email": "ngocdt.sunrise@gmail.com",
       "id": "-c3AgBLI7",
       "password": "haoiungoc",
-      "isAdmin": true
-    },
-    {
-      "id": "8Wv2dLC4X",
-      "name": "Lê Thị Hậu",
-      "email": "hau@gmail.com",
-      "password": "$2b$10$001kgqyK1mSRq7qAGrUdQu5Gcg5omKrXEgDkIVnPJcJolp2RP5wxa"
+      "isAdmin": true,
+      "avatarURL": "uploads/0b0c760abc4a2ead23f315929ffa1d71"
     },
     {
       "id": "3fUpsacEd",
       "name": "Lê Thùy Linh",
       "email": "linh@gmail.com",
-      "password": "$2b$10$..MFJKy9QWBdSlVqTDkU4uLeHesGiUepYvl6oPVOeDW1FOJ4Hg0fu"
+      "password": "$2b$10$..MFJKy9QWBdSlVqTDkU4uLeHesGiUepYvl6oPVOeDW1FOJ4Hg0fu",
+      "avatarURL": "uploads/0b0c760abc4a2ead23f315929ffa1d71"
     },
     {
-      "id": "zDcNsZ6eJ",
-      "name": "Lê Hiền",
-      "email": "hien@gmail.com",
-      "password": "$2b$10$F2/S69bazMu4/l7dkGi7we/nVRm4d3Emy88m8OJ1LoKLWBM.c7MQ6"
+      "id": "Jr0frSp1E",
+      "name": "Lê Thị Hậu",
+      "email": "hau@gmail.com",
+      "password": "$2b$10$twf/N8Hbt6A/iwbHJzI.MOnghfe2MjEPxxf.PGNX19ZY92/z8YQJC",
+      "avatarURL": "uploads/6ea0b632e24a63d0742ca46bd9fc056d"
     },
     {
-      "id": "RTQPpxG9h",
-      "name": "Dương Chung",
-      "email": "chung@gmail.com",
-      "password": "$2b$10$9816uSgVcm67CAcEeja6lulCEWRWskZfXVYyJTDD.7JuxFFOZNpwe"
+      "id": "5yXIg9HAW",
+      "name": "Nguyễn Thị Hằng",
+      "email": "hangngo@gmail.com",
+      "password": "$2b$10$Z71AUQCnJoLuYPFfeygpvOrQzLNB9eNROji/4nK0ql0lH4FtG6D8S",
+      "avatarURL": "uploads/70623a7b52d1f8b2da2c3a80eb586317"
+    },
+    {
+      "id": "s1AsjsPVW",
+      "name": "temp1",
+      "email": "temp@gmail.com",
+      "password": "$2b$10$KpSAOEggIyuipx9XwQlYaOja1jPRtkp5Il8omdXTKtK8whNnvNIzi",
+      "avatarURL": "http://res.cloudinary.com/ngocduongflyinthesky1509/image/upload/v1593617833/v1ekv0mayl1jytrnd92s.jpg"
     }
   ],
   "transactions": [
