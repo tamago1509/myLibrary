@@ -6,12 +6,14 @@ module.exports.requireAuth = function(req, res, next){
 		return;
 	}
 	var user = db.get('users').find({ id: req.signedCookies.userId }).value();
+	
 
 	if(!user){
 		res.redirect('/auth/login');
 		return;
+	}else{
+		
+		res.locals.user = user
+		next();
 	}
-
-	res.locals.user = user
-	next();
 }

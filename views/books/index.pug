@@ -55,10 +55,10 @@ block content
 
 	ul.d-flex.flex-wrap
 		each book in books
-			.card.m-3(style='width: 18rem;')
+			.card.m-3(style='width: 15rem;')
 				img.card-img-top(src=book.img)
 				.card-body
 					h5.card-title=book.title
 					p.card-text=book.decs
-					a.btn.btn-primary.text-center(href='#') Borrow
+					a.btn.btn-primary.text-center(href='/cart/add/'+ book.id) Borrow
 

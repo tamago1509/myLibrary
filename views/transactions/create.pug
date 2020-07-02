@@ -17,11 +17,25 @@ block content
 				option(value=book.title)=book.title
 		if !hide
 			button(class="btn btn-primary") Borrow
-
 	ul(class="mr-3")
 		each tran in transactions
-			li= tran.bookTitle+ " _ " + tran.userName
+			-var check = tran.isComplete ? "Đã trả" : "Chưa trả"
+			li= tran.bookTitle
 			span &nbsp;
 			if !hide
 				a(href='/transactions/'+ tran.id + "/complete") Complete
-			span= "_" + tran.isComplete
+			span.text-primary= "-" + check
+	span.h3.text-info Sách muốn mượn 
+	table.table
+		thead
+			th Tên sách
+			th Số lượng
+			
+		tbody
+			each val, key in borrows
+				tr
+					td= key
+					td= val
+					
+	
+	

@@ -8,9 +8,10 @@ var shortid = require('shortid');
 var userRoute = require('./router/users.route');
 var authRoute = require('./router/auth.route');
 var transactionsRoute = require('./router/transactions.route');
+var cartRouter = require('./router/cart.route');
 var favicon = require('serve-favicon');
 var path = require('path')
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 
 
 
@@ -29,6 +30,7 @@ var transactionsControllers = require('./controllers/transaction.controller');
 //import middlewares
 var cookieMiddlewares= require('./middlewares/cookie.middlewares')
 var authMiddleware= require('./middlewares/auth.middleware');
+var sessionMiddleware = require('./middlewares/session.middleware');
 
 
 
@@ -46,11 +48,13 @@ app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(process.env.SECTION_SECRETE))
+app.use(sessionMiddleware.session);
 
 //routing
 app.use('/users',authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
-app.use('/transactions', transactionsRoute);
+app.use('/transactions', authMiddleware.requireAuth, transactionsRoute);
+app.use('/cart', cartRouter);
 
 
 

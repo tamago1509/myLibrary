@@ -306,7 +306,7 @@
       "name": "Dương Thị Ngọc",
       "email": "ngocdt.sunrise@gmail.com",
       "id": "-c3AgBLI7",
-      "password": "haoiungoc",
+      "password": "$2b$10$..MFJKy9QWBdSlVqTDkU4uLeHesGiUepYvl6oPVOeDW1FOJ4Hg0fu",
       "isAdmin": true,
       "avatarURL": "uploads/0b0c760abc4a2ead23f315929ffa1d71"
     },
@@ -369,6 +369,43 @@
       "userName": "Lê Thùy Linh",
       "bookTitle": "Code clean",
       "isComplete": false
+    }
+  ],
+  "sessions": [
+    {
+      "id": "Ead-fewTq",
+      "cart": {
+        "I Am Fishead": 1,
+        "Quartier Mozart": 1
+      }
+    },
+    {
+      "id": "-y4JXt5gL",
+      "cart": {
+        "Quartier Mozart": 2,
+        "Adventures of Kitty O'Day (Kitty O'Day Comes Through)": 1,
+        "I Am Fishead": 1
+      }
+    },
+    {
+      "id": "_cOJ39MRf",
+      "cart": {
+        "Quartier Mozart": 1,
+        "Adventures of Kitty O'Day (Kitty O'Day Comes Through)": 1
+      }
+    },
+    {
+      "id": "Bo7XjmIf_",
+      "cart": {
+        "I Am Fishead": 2,
+        "Quartier Mozart": 1
+      }
+    },
+    {
+      "id": "jPn_BHO_Y",
+      "cart": {
+        "I Am Fishead": 1
+      }
     }
   ]
 }

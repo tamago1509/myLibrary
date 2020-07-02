@@ -4,7 +4,7 @@ var shortid =require('shortid');
 
 module.exports.create = function(req, res){
 	//lay user tu cookie
-	let userId = req.cookies.userId;
+	let userId = req.signedCookies.userId;
 	let user = db.get('users').find({ id: userId}).value()
 	
 	
@@ -22,11 +22,19 @@ module.exports.create = function(req, res){
 	//nếu không phải thì chỉ hiện tên user thôi, không hiện nút borow, ko hiện link complete
 	// ....
 		let transactions = db.get("transactions").value()
+		var sessionId = req.signedCookies.sessionId;
+		var findSession = db.get('sessions')
+		.find({ id: sessionId})
+		.value();
+		
+		var wantedbooks = findSession.cart;
+
 		transactions = transactions.filter((trans) => trans.userName == user.name )
-		// console.log(transactions)
+
 		res.render('transactions/create',{
 			users: [user],
 			books: [],
+			borrows: wantedbooks,
 			transactions: transactions,
 			hide : true
 
