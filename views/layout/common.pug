@@ -17,8 +17,9 @@ html
 			a.nav-item.nav-link(href='#') Features
 			a.nav-item.nav-link(href='#') Cart
 				span.ml-2.text-danger= borrowedBooks 
-			
-
+			if user
+				p.nav-item=user.name
+				
 
 	.container.pt-5
 		block content

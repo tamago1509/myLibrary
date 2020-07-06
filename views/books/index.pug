@@ -8,50 +8,54 @@ block content
 		br
 		a(href='./transactions/create') Transactions Management
 
-	form(action="/books/index", method="POST",class="d-flex m-4")
+	form(action="/books/index", method="POST",class="d-flex m-4" enctype="multipart/form-data")
 		label Title: 
 		span &nbsp;
 		input(type="text", name="title", class="form-control")
 		label Description:
 		span &nbsp;
-		input(type="text", name="desc", class="form-control")
+		input(type="text", name="decs", class="form-control")
+		label(for='bookCover') Book Cover
+		input#avatar.form-control-file(name='image', type= "file")
 		button(class="btn btn-primary mr-5") Create
 	nav.d-flex.justify-content-end(aria-label='Page navigation example')
-		ul.pagination
+	
+		
+			//- ul.pagination
 
-			// check dk nut prev bang current
-			if current > 1
-				li.page-item
-					a.page-link(href=`?page=${current-1}`) Previous
-			else
-				li.page-item.disabled
-					a.page-link(href='#') Previous
+			//- // check dk nut prev bang current
+			//- if current > 1
+			//- 	li.page-item
+			//- 		a.page-link(href=`?page=${current-1}`) Previous
+			//- else
+			//- 	li.page-item.disabled
+			//- 		a.page-link(href='#') Previous
 
-			// logic hien  nut bam
-			- var totalBtn = 2*nBtn + 1; //
-			// 3 , 3 -> i = 0 1 2
-			// btn = 2 3 4  / ct : -> 3 - 1 + i (current - nBtn + i)
-			- for (var i = 0; i < totalBtn; i++)
-				- var number = current - nBtn + i ;
+			//- // logic hien  nut bam
+			//- - var totalBtn = 2*nBtn + 1; //
+			//- // 3 , 3 -> i = 0 1 2
+			//- // btn = 2 3 4  / ct : -> 3 - 1 + i (current - nBtn + i)
+			//- - for (var i = 0; i < totalBtn; i++)
+			//- 	- var number = current - nBtn + i ;
 
-				//start limit = 1 va //end limit = current + nBtn *2
-				if number <= 0  
-					continue
-				else if number >= current + nBtn*2  
-					continue
-				else if number == current
-					li.page-item.active
-						a.page-link(href=`?page=${number}`)=number
-				else
-					li.page-item
-						a.page-link(href=`?page=${number}`)=number
-			//check dk nut next banwg current
-			if current >= nPage
-				li.page-item.disabled
-					a.page-link(href='#') Next
-			else
-				li.page-item
-					a.page-link(href=`?page=${current+1}`) Next
+			//- 	//start limit = 1 va //end limit = current + nBtn *2
+			//- 	if number <= 0  
+			//- 		continue
+			//- 	else if number >= current + nBtn*2  
+			//- 		continue
+			//- 	else if number == current
+			//- 		li.page-item.active
+			//- 			a.page-link(href=`?page=${number}`)=number
+			//- 	else
+			//- 		li.page-item
+			//- 			a.page-link(href=`?page=${number}`)=number
+			//- //check dk nut next banwg current
+			//- if current >= nPage
+			//- 	li.page-item.disabled
+			//- 		a.page-link(href='#') Next
+			//- else
+			//- 	li.page-item
+			//- 		a.page-link(href=`?page=${current+1}`) Next
 
 	ul.d-flex.flex-wrap
 		each book in books
@@ -60,5 +64,10 @@ block content
 				.card-body
 					h5.card-title=book.title
 					p.card-text=book.decs
-					a.btn.btn-primary.text-center(href='/cart/add/'+ book.id) Borrow
+					a.btn.btn-primary.text-center.mb-2(href='/cart/add/'+ book.id) Borrow
+					span &nbsp;
+					br
+					a.btn.btn-success(href="/books/" + book.id + "/update") Update
+					span &nbsp;
+					a.btn.btn-danger(href="/books/" + book.id+ "/delete") Delete
 

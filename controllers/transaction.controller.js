@@ -1,46 +1,54 @@
-var db = require("../db");
-var shortid =require('shortid');
+const mongoose = require('mongoose');
+const Transaction = require('../models/transactions.model')
+const User = require('../models/user.model')
+const Book =  require('../models/books.model')
+const Session = require('../models/sessions.model')
 
 
-module.exports.create = function(req, res){
+module.exports.create = async function(req, res){
 	//lay user tu cookie
 	let userId = req.signedCookies.userId;
-	let user = db.get('users').find({ id: userId}).value()
-	
-	
-	//check xem phải admin ko? nếu phải 
-	if(user.isAdmin){
+	console.log(userId)
+	let users = await User.find();
+	let books = await Book.find();
+	let transactions = await Transaction.find();
+	// let sessions = await Session.find();
+	User.findOne( {_id : userId}).then(function(user){
+		if(user.isAdmin){
 
-		res.render('transactions/create',{
-			users: db.get('users').value(),
-			books: db.get('books').value(),
-			transactions: db.get('transactions').value(),
-			hide: false
-		})
-	} else {
+			res.render('transactions/create',{
+				users: users,
+				books: books,
+				transactions: transactions,
+				hide: false
+			})
+		} else {
 
-	//nếu không phải thì chỉ hiện tên user thôi, không hiện nút borow, ko hiện link complete
-	// ....
-		let transactions = db.get("transactions").value()
-		var sessionId = req.signedCookies.sessionId;
-		var findSession = db.get('sessions')
-		.find({ id: sessionId})
-		.value();
+		//nếu không phải thì chỉ hiện tên user thôi, không hiện nút borow, ko hiện link complete
+		// ....
+			var sessionId = req.signedCookies.sessionId;
+			Session.findOne({ _id: sessionId}).exec()
+			.then(session => {
+				var wantedbooks = session.cart || {} ; // an object
+				console.log("session : " + session)
+
+				transactions = transactions.filter((trans) => trans.userName == user.name )
+
+				res.render('transactions/create',{
+					users: [user],
+					books: [],
+					borrows: wantedbooks,
+					transactions: transactions,
+					hide : true
+
+				})
+			})
+		}
+	})
 		
-		var wantedbooks = findSession.cart;
-
-		transactions = transactions.filter((trans) => trans.userName == user.name )
-
-		res.render('transactions/create',{
-			users: [user],
-			books: [],
-			borrows: wantedbooks,
-			transactions: transactions,
-			hide : true
-
-		})
-
-	}
+		
+		//check xem phải admin ko? nếu phải 
+	
 
 }
 

@@ -3,7 +3,7 @@ var nodemailer = require('nodemailer');
 
 
 var bcrypt = require('bcrypt');
-var db = require('../db');
+const User = require('../models/user.model')
 
 
 
@@ -14,12 +14,12 @@ module.exports.login = function(req, res){
 
 }
 
-module.exports.postLogin = function(req, res){
+module.exports.postLogin = async function(req, res){
 	var email = req.body.email;
 	var password = req.body.password;
 	
 
-	var user = db.get('users').find({ email: email }).value();
+	var user = await User.findOne({ email : email }).exec()
 
 	var transporter = nodemailer.createTransport({
 	    host: "smtp.ethereal.email",
@@ -47,11 +47,15 @@ module.exports.postLogin = function(req, res){
 		return;
 	}
 	
+	console.log(user)
 
+	//so snah pass
 	bcrypt.compare(password, user.password, function(err, result) {
 		// login trhanh cong
 		if(result){
-	    	res.cookie('userId', user.id,{
+			console.log(result)
+	    	res.cookie('userId', user._id,{
+
 	    		signed: true
 	    	});
 	    	res.clearCookie('times')

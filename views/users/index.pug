@@ -21,7 +21,7 @@ block content
 			input(type="password",name="password" class="form-control")
 		.form-group
 			label(for='avatar') Avatar
-			input#avatar.form-control-file(name='avatar', type= "file")
+			input#avatar.form-control-file(name='avatarURL', type= "file")
 
 		button(class="btn btn-primary") Create
 	
@@ -36,7 +36,7 @@ block content
 			each user in users
 				tr
 					td
-						img.rounded-circle(src= "/" + user.avatarURL, width = "50",height = "50")
+						img.rounded-circle(src= user.avatarURL, width= 50, height= 50)
 					td= user.name
 					td
 						a(href="/users/"+ user.id + "/update") Update

@@ -1,7 +1,11 @@
 var express = require('express');
-var multer  = require('multer')
 var validate = require('../validate/user.validate');
 var controller = require('../controllers/users.controllers');
+
+//config multer
+var multer  = require('multer')
+const storage = multer.memoryStorage();
+const multerUploads = multer({ storage }).single('avatarURL');
 
 var upload = multer({ dest: './public/uploads/' })
 
@@ -13,9 +17,9 @@ router.get('/:id/delete',controller.delete);
 
 router.get('/:id/update',controller.update);
 
-router.post('/:id/update', upload.single('avatar'), controller.postUpdate);
+router.post('/:id/update', multerUploads, controller.postUpdate);
 
-router.post('/index', upload.single('avatar'), 
+router.post('/index', multerUploads, 
 	validate.postIndex,
 	 controller.postIndex
 	 );

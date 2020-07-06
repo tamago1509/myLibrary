@@ -337,6 +337,13 @@
       "email": "temp@gmail.com",
       "password": "$2b$10$KpSAOEggIyuipx9XwQlYaOja1jPRtkp5Il8omdXTKtK8whNnvNIzi",
       "avatarURL": "http://res.cloudinary.com/ngocduongflyinthesky1509/image/upload/v1593617833/v1ekv0mayl1jytrnd92s.jpg"
+    },
+    {
+      "id": "AVs1_9-28",
+      "name": "Hằng Tồ",
+      "email": "hangto@gmail.com",
+      "password": "$2b$10$PxFeGDvOZ23pQfDiZV8WvO2GSJC3AzmsWRlFGRWCEojc953j4bJlS",
+      "avatarURL": "uploads/b3619afd27630c2b202c22c85b54c180"
     }
   ],
   "transactions": [
@@ -406,6 +413,33 @@
       "cart": {
         "I Am Fishead": 1
       }
+    },
+    {
+      "id": "0ulN0DD8f"
+    },
+    {
+      "id": "ns9uFaoGN"
+    },
+    {
+      "id": "V2Zz0O0Pb"
+    },
+    {
+      "id": "tToJYun0X"
+    },
+    {
+      "id": "VEA8tHP2D"
+    },
+    {
+      "id": "R7MdAh7d1"
+    },
+    {
+      "id": "TAyy_acvJ"
+    },
+    {
+      "id": "9g5J-wmDh"
+    },
+    {
+      "id": "SNpWyQel8"
     }
   ]
 }
