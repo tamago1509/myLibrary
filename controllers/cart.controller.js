@@ -1,7 +1,8 @@
 
 var mongoose = require('mongoose');
-var Session = require('../models/sessions.model');
+
 var Book = require('../models/books.model');
+var Session = require('../models/books.model');
 module.exports.borrowBook = async function(req, res){
 
 	var bookId = req.params.id;
@@ -13,23 +14,23 @@ module.exports.borrowBook = async function(req, res){
 	}
 	
 
+	Book.findById(bookId).then( findBook=>{
+		var updateContent = { 'title': findBook._id,  $inc: { 'count': 1 } }
+
+		Session.updateMany(
+		   {_id: sessionId},
+		    { "$set": {cart: updateContent} },
+		    { "multi": true },
+		    function(err,numAffected) {
+		        if (err) throw err;
+		        console.log( "updated n docs: %s", 'ok' );
+		    }
+		);
+
+			
+			res.redirect('/')
 
 
-	var findBook = await Book.findOne({ _id: bookId});
-	var updateContent = { 'title': findBook.id,  count }
-
-	Session.updateMany(
-	   {_id: sessionId},
-	    { "$set": {cart: updateContent} },
-	    { "multi": true },
-	    function(err,numAffected) {
-	        if (err) throw err;
-	        console.log( "updated n docs: %s", 'ok' );
-	    }
-	);
-
-		
-		 res.redirect('/')
-
-
+	})
+	
 }

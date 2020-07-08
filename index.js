@@ -8,7 +8,11 @@ var shortid = require('shortid');
 var userRoute = require('./router/users.route');
 var authRoute = require('./router/auth.route');
 var transactionsRoute = require('./router/transactions.route');
+var apiRoute = require('./api/routes/book.route');
+var loginRoute = require('./api/routes/login.route');
+var bookRoute = require('./router/books.route');
 var cartRouter = require('./router/cart.route');
+var transactionApiRouter = require('./api/routes/transactions.route');
 var favicon = require('serve-favicon');
 var path = require('path')
 var cookieParser = require('cookie-parser');
@@ -53,31 +57,6 @@ cloudinary.config({
 const multerUploads = multer({ storage }).single('image');
 //
 
-
-
-
-// app.post('/books/index', multerUploads, (req, res) => {
-// 	if(req.file) {
-// 		const file = req.file;
-// 		uploader
-// 		.upload(file)
-// 		.then((result) => {
-// 			const image = result.url;
-// 			res.status(200).json({
-// 			messge: 'Your image has been uploded successfully to cloudinary',
-// 			data: {
-// 				image
-// 			}
-// 		})
-// 		}).catch((err) => res.status(400).json({
-// 			messge: 'someting went wrong while processing your request',
-// 			data: {
-// 				err
-// 			}
-// 		}))
-// 	}
-// });
-
 mongoose.connect(process.env.SECRETE_URL)
 
 //config
@@ -118,102 +97,16 @@ app.use('/users',authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
 app.use('/transactions', authMiddleware.requireAuth, transactionsRoute);
 app.use('/cart', cartRouter);
+app.use('/books', bookRoute);
+
+app.use('/api/books', apiRoute);
+app.use('/api/login', loginRoute);
+app.use('/api/transactions', transactionApiRouter);
 
 
 
 
 app.get('/', cookieMiddlewares.countCookie, cookieControllers.index) 
-
-
-
-
-//tao book
-
-app.post('/books/index', multerUploads, (req, res) => {
-	if(req.file) {
-
-		const base64 = changeToBase64(req).content;
-		// console.log(req.file)
-		// console.log(base64)
-		cloudinary.uploader
-		.upload(base64)
-		.then((result) => {
-			const newBook = new Book({
-				title: req.body.title,
-				decs: req.body.decs,
-				img: result.url
-			})
-			return newBook.save()
-
-		})
-		.then(result => {
-			res.redirect("/")
-		})
-		.catch((err) => res.status(400).json({
-			messge: 'someting went wrong while processing your request',
-			data: {
-				err
-			}
-		}))
-	}
-});
-
-// app.post('/books/index',(req, res)=>{
-	
-// 	Book.insertMany(req.body,(err)=>{
-// 		console.log(err);
-// 	});
-// 	res.redirect('/'); 
-// })
-
-
-
-
-
-
-// xóa sách
-
-app.get('/books/:id/delete',(req, res)=>{
-
-	var deleteId= req.params.id;
-	
-	Book.findOneAndRemove({ _id : deleteId},function(err){
-		if(err)
-			return handleError(err);
-	})
-
-			
-	res.redirect('/')
-	
-})
-//update sách
-app.get('/books/:id/update',(req, res)=>{
-	//
-
-	res.render('books/update', {
-		id: req.params.id
-	})
-
-})	
-
-
-
-
-
-app.post('/books/:id/update',(req, res)=>{
-	var updateId = { _id : req.params.id };
-	var updateContent = { title : req.body.title };
-	Book.findOneAndUpdate(updateId , updateContent,{
-		returnOriginal: false
-	},function(err){
-		if(err)
-			return handleError(err);
-	})
-
-	res.redirect("/")
-})
-
-
 
 
 app.listen(port,()=>{

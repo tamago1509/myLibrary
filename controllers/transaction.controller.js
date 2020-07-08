@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Transaction = require('../models/transactions.model')
 const User = require('../models/user.model')
 const Book =  require('../models/books.model')
-const Session = require('../models/sessions.model')
+const Session = require('../models/books.model')
 
 
 module.exports.create = async function(req, res){
@@ -27,11 +27,10 @@ module.exports.create = async function(req, res){
 		//nếu không phải thì chỉ hiện tên user thôi, không hiện nút borow, ko hiện link complete
 		// ....
 			var sessionId = req.signedCookies.sessionId;
-			Session.findOne({ _id: sessionId}).exec()
+			Session.findOne({ _id: sessionId})
 			.then(session => {
 				var wantedbooks = session.cart || {} ; // an object
-				console.log("session : " + session)
-
+			
 				transactions = transactions.filter((trans) => trans.userName == user.name )
 
 				res.render('transactions/create',{
@@ -55,20 +54,24 @@ module.exports.create = async function(req, res){
 module.exports.postComplete = function(req, res){
 	var completeId= req.params.id;
 	let data =  req.body.isComplete ? true : false
-	db.get('transactions').find({id: completeId}).assign({isComplete: data}).write();
+	Transaction.findOneAndUpdate({_id: completeId},{isComplete: data},{
+		returnOriginal: false
+	},function(err){
+		if(err)
+			return handleError(err);
+	})
 	
 	//redirect cần 1 tham số là 1 url
 	res.redirect('/transactions/create') 
 }
 module.exports.postCreate = function(req, res){
 	let data = {
-		id:shortid.generate(),
 		userName: req.body.userName,
 		bookTitle: req.body.bookTitle,
 		isComplete: false
 	}
 
-	db.get('transactions').push(data).write();
+	Transaction.insertOne(data);
 	res.render('create',{
 
 	});
