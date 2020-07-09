@@ -9,6 +9,8 @@ const User = require('../models/user.model')
 
 
 module.exports.login = function(req, res){
+	var a; 
+	a.b();
 
 	res.render('auth/login')
 
@@ -47,13 +49,13 @@ module.exports.postLogin = async function(req, res){
 		return;
 	}
 	
-	console.log(user)
+	
 
 	//so snah pass
 	bcrypt.compare(password, user.password, function(err, result) {
 		// login trhanh cong
 		if(result){
-			console.log(result)
+			
 	    	res.cookie('userId', user._id,{
 
 	    		signed: true

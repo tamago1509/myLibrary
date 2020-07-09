@@ -1,5 +1,3 @@
-var mongoose = require('mongoose');
-
 var Book = require('../../models/books.model');
 
 

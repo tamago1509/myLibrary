@@ -111,6 +111,10 @@ app.use('/api/users', userApiRouter);
 app.get('/', cookieMiddlewares.countCookie, cookieControllers.index) 
 
 
+app.use(function(err, req, res,_){
+	res.render('error/500',{err});
+})
+
 app.listen(port,()=>{
 	console.log('There is a port at ' +port);
 })
