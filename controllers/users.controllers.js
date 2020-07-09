@@ -118,13 +118,17 @@ module.exports.postIndex = function(req, res){
 }	
 
 
-module.exports.update = function(req, res){
+module.exports.update = async function(req, res){
+	var updateUser = await User.findById(req.params.id);
 	res.render('users/update',{
 		id: req.params.id,
+		name: updateUser.name,
+		email:updateUser.email
+
 	})
 }
 
-module.exports.postUpdate = function(req, res){
+module.exports.postUpdate = async function(req, res){
 
 	if(req.file) {
 
@@ -150,7 +154,28 @@ module.exports.postUpdate = function(req, res){
 		}))
 		})
 		
-	}
+	}else{
+		var updateUser = await User.findById(req.params.id);
+		var updateId = { _id :req.params.id};
+		var updateContent = { name: req.body.name || updateUser.name,
+		email: req.body.email || updateUser.email,
+		avatarURL:updateUser.avatarURL}
+		User.findOneAndUpdate(updateId , updateContent,{
+			returnOriginal: false
+		},function(err){
+			if(err)
+				return handleError(err);
+		}).then(result => {
+			res.redirect("/users/index")
+		}).catch((err) => res.status(400).json({
+			messge: 'someting went wrong while processing your request',
+			data: {
+				err
+			}
+		})
+
+	)}
+
 
 }
 		

@@ -9,8 +9,7 @@ const User = require('../models/user.model')
 
 
 module.exports.login = function(req, res){
-	var a; 
-	a.b();
+
 
 	res.render('auth/login')
 

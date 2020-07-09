@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Transaction = require('../models/transactions.model')
 const User = require('../models/user.model')
 const Book =  require('../models/books.model')
-const Session = require('../models/books.model')
+const Session = require('../models/session.model')
 
 
 module.exports.create = async function(req, res){
