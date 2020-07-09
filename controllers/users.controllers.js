@@ -4,7 +4,6 @@ var validate = require('../validate/user.validate');
 var db = require("../db");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-var shortId = require('shortId');
 var cloudinary = require('cloudinary').v2;
 var path = require('path')
 
