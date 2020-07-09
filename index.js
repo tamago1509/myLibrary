@@ -13,6 +13,7 @@ var loginRoute = require('./api/routes/login.route');
 var bookRoute = require('./router/books.route');
 var cartRouter = require('./router/cart.route');
 var transactionApiRouter = require('./api/routes/transactions.route');
+var userApiRouter = require('./api/routes/user.route');
 var favicon = require('serve-favicon');
 var path = require('path')
 var cookieParser = require('cookie-parser');
@@ -102,6 +103,7 @@ app.use('/books', bookRoute);
 app.use('/api/books', apiRoute);
 app.use('/api/login', loginRoute);
 app.use('/api/transactions', transactionApiRouter);
+app.use('/api/users', userApiRouter);
 
 
 

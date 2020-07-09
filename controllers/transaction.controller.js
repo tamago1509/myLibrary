@@ -8,7 +8,7 @@ const Session = require('../models/books.model')
 module.exports.create = async function(req, res){
 	//lay user tu cookie
 	let userId = req.signedCookies.userId;
-	console.log(userId)
+	
 	let users = await User.find();
 	let books = await Book.find();
 	let transactions = await Transaction.find();
