@@ -30,8 +30,8 @@ block content
 	
 	ul.d-flex.flex-wrap
 		each book in books
-			.card.m-3(style='width: 240px height: 160px')
-				img.card-img-top(src=book.image)
+			.card.m-3(style='width: 300px ; height: 400px')
+				img.card-img-top(src=book.image style='width: 300px ; height: 200px; object-fit: cover')
 				.card-body
 					h5.card-title=book.title
 					p.card-text=book.decs
