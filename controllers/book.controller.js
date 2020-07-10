@@ -24,6 +24,7 @@ module.exports.postIndex = async function(req, res){
 		cloudinary.uploader
 		.upload(base64)
 		.then((result) => {
+			console.log(result)
 			const newBook = new Book({
 				title: req.body.title,
 				decs: req.body.decs,
