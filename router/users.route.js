@@ -19,10 +19,7 @@ router.get('/:id/update',controller.update);
 
 router.post('/:id/update', multerUploads, controller.postUpdate);
 
-router.post('/index', multerUploads, 
-	validate.postIndex,
-	 controller.postIndex
-	 );
+
 
 
 module.exports = router;

@@ -6,7 +6,7 @@ block content
 	if errors
 		each error in errors
 			.alert.alert-danger= error
-	form.m-3( action="/users/index", method="POST", enctype="multipart/form-data" )
+	form.m-3( method="POST", enctype="multipart/form-data" )
 		.form-group
 			label User Name:
 			span &nbsp;

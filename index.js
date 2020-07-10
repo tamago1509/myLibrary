@@ -16,7 +16,14 @@ var userApiRouter = require('./api/routes/user.route');
 var favicon = require('serve-favicon');
 var path = require('path')
 var cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+
+
+
 var Book= require('./models/books.model');
+var User= require('./models/user.model');
 
 
 //config mongoose
@@ -60,6 +67,7 @@ cloudinary.config({
 
 //multer middlewares
 const multerUploads = multer({ storage }).single('image');
+
 //
 const uri = process.env.SECRETE_URL
 mongoose
@@ -123,22 +131,19 @@ app.use('/api/users', userApiRouter);
 app.get('/signUp/index',(req, res)=>{
 	res.render('signUp/index')
 })
-app.post('signUp/index',(req, res)=>{
+app.post('/signUp/index',multerUploads , (req, res)=>{
 	
 	//check xem email ton tai chua? nếu tồn tại thì bắt nhập lại mail khác
 	//nếu không thì lưu vào database
 	let email = req.body.email;
-
+	console.log(email)
 
 	User.findOne({ email: email}).then(function(userEmail){
 		if(userEmail){
 			let errors = ["Email has been existed!"]
-			User.find().then(function(users){
+			
 			res.render('signUp/index',{
-				errors: errors,
-				users: users
-			})
-
+				errors: errors
 			})
 		} else {
 		// store into db
@@ -156,7 +161,7 @@ app.post('signUp/index',(req, res)=>{
 							name: req.body.name,
 							email: req.body.email,
 							password: hash,
-							image: result.url
+							avatarURL: result.url
 						})
 						return newUser.save()
 

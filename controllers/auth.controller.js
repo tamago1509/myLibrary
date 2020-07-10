@@ -18,10 +18,7 @@ module.exports.login = function(req, res){
 module.exports.postLogin = async function(req, res){
 	var email = req.body.email;
 	var password = req.body.password;
-	
-
-	var user = await User.findOne({ email : email }).exec()
-
+	//config mail
 	var transporter = nodemailer.createTransport({
 	    host: "smtp.ethereal.email",
 	    port: 587,
@@ -33,12 +30,9 @@ module.exports.postLogin = async function(req, res){
 	  	}
 	});
 
-	var mailOptions = {
-	  from: 'dtngoc.nhat3k53.ftu@gmail.com',
-	  to: user.email,
-	  subject: 'Login failed!',
-	  text: 'You login failed 2 times. Please check your account!!!'
-	};
+	var user = await User.findOne({ email : email }).exec()
+
+	//if wrong email
 	if(!user){
 		res.render('auth/login',
 		{
@@ -87,6 +81,13 @@ module.exports.postLogin = async function(req, res){
 					res.cookie('times', wrongLoginCount)
 
 				} else {
+
+					let mailOptions = {
+					  from: 'dtngoc.nhat3k53.ftu@gmail.com',
+					  to: user.email,
+					  subject: 'Login failed!',
+					  text: 'You login failed 4 times. Please check your account!!!'
+					};
 
 					errors = ['Wrong pass 4 times.']
 					hide = true
