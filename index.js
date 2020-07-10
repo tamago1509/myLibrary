@@ -107,6 +107,7 @@ app.use(cookieParser(process.env.SECTION_SECRETE))
 app.use(sessionMiddleware.session);
 
 //routing
+
 app.use('/users',authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
 app.use('/transactions', authMiddleware.requireAuth, transactionsRoute);
@@ -119,6 +120,63 @@ app.use('/api/transactions', transactionApiRouter);
 app.use('/api/users', userApiRouter);
 
 
+app.get('/signUp/index',(req, res)=>{
+	res.render('signUp/index')
+})
+app.post('signUp/index',(req, res)=>{
+	
+	//check xem email ton tai chua? nếu tồn tại thì bắt nhập lại mail khác
+	//nếu không thì lưu vào database
+	let email = req.body.email;
+
+
+	User.findOne({ email: email}).then(function(userEmail){
+		if(userEmail){
+			let errors = ["Email has been existed!"]
+			User.find().then(function(users){
+			res.render('signUp/index',{
+				errors: errors,
+				users: users
+			})
+
+			})
+		} else {
+		// store into db
+			bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+	    // Store hash in your password DB.
+	    		if(req.file) {
+
+					const base64 = changeToBase64(req).content;
+					 // console.log(req.file)
+					 // console.log(base64)
+					cloudinary.uploader
+					.upload(base64)
+					.then((result) => {
+						const newUser = new User({
+							name: req.body.name,
+							email: req.body.email,
+							password: hash,
+							image: result.url
+						})
+						return newUser.save()
+
+					}).then(result => {
+						res.redirect("/")
+					})
+					.catch((err) => res.status(400).json({
+						messge: 'someting went wrong while processing your request',
+						data: {
+							err
+						}
+					}))
+					
+				}
+			});
+		}
+	})
+	
+
+})
 
 
 app.get('/', cookieMiddlewares.countCookie, cookieControllers.index) 

@@ -1,0 +1,26 @@
+extends ../layout/common.pug
+
+block content	
+
+	h1 List users
+	if errors
+		each error in errors
+			.alert.alert-danger= error
+	form.m-3( action="/users/index", method="POST", enctype="multipart/form-data" )
+		.form-group
+			label User Name:
+			span &nbsp;
+			input(type="text", name="name" class="form-control")
+		.form-group
+			label User Email:
+			span &nbsp;
+			input(type="email",name="email" class="form-control")
+		.form-group
+			label User Password:
+			span &nbsp;
+			input(type="password",name="password" class="form-control")
+		.form-group
+			label(for='avatar') Avatar
+			input#avatar.form-control-file(name='image', type= "file")
+
+		button(class="btn btn-primary") Create

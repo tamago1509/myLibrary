@@ -24,24 +24,6 @@ module.exports.borrowBook = async function(req, res){
 		}) 
 	})
 
-	// Book.findById(bookId).then( findBook=>{
-	// 	var updateContent = { 'title': findBook._id,  $inc: { 'count': 1 } }
-	// 	var options = { multi: true, upsert: true, new: true, setDefaultsOnInsert: true };
-
-	// 	Session.updateMany(
-	// 	   {_id: sessionId},
-	// 	    { "$set": {cart: updateContent} },
-	// 	    options,
-	// 	    function(err,numAffected) {
-	// 	        if (err) throw err;
-	// 	        console.log( "updated n docs: %s", 'ok' );
-	// 	    }
-	// 	);
-
-			
-	// 		res.redirect('/')
-
-
-	// })
+	
 	
 }
