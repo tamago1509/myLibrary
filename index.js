@@ -57,8 +57,14 @@ cloudinary.config({
 const multerUploads = multer({ storage }).single('image');
 //
 
-mongoose.connect(process.env.SECRETE_URL,{ useNewUrlParser: true })
-
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.SECRETE_URL;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("books");
+  // perform actions on the collection object
+  client.close();
+});
 //config
 var iconPath= path.join(__dirname, "public","favicon.ico")
 var options = {
