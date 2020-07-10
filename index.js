@@ -57,7 +57,7 @@ cloudinary.config({
 const multerUploads = multer({ storage }).single('image');
 //
 
-mongoose.connect(process.env.SECRETE_URL)
+mongoose.connect(process.env.SECRETE_URL,{ useNewUrlParser: true })
 
 //config
 var iconPath= path.join(__dirname, "public","favicon.ico")
