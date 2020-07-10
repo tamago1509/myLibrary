@@ -2,9 +2,19 @@ var mongoose = require('mongoose');
 
 var Book = require('../models/books.model');
 
+var cloudinary = require('cloudinary').v2;
+var path = require('path')
 
 
-module.exports.postIndex = async function(req, res){ 
+module.exports.postIndex = async function(req, res){
+	const DatauriParser = require('datauri/parser');
+	const parser = new DatauriParser();
+	const changeToBase64 = req => {
+		let ext = req.file.originalname.split(".")
+		ext = `.${ext.pop()}`
+		console.log(ext)
+		return parser.format(ext.toString(), req.file.buffer)
+	} 
 
 	if(req.file) {
 

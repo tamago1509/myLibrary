@@ -128,6 +128,14 @@ module.exports.update = async function(req, res){
 }
 
 module.exports.postUpdate = async function(req, res){
+	const DatauriParser = require('datauri/parser');
+	const parser = new DatauriParser();
+	const changeToBase64 = req => {
+	let ext = req.file.originalname.split(".")
+	ext = `.${ext.pop()}`
+	console.log(ext)
+	return parser.format(ext.toString(), req.file.buffer)
+	}
 
 	if(req.file) {
 

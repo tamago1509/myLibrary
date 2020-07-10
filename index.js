@@ -16,8 +16,13 @@ var userApiRouter = require('./api/routes/user.route');
 var favicon = require('serve-favicon');
 var path = require('path')
 var cookieParser = require('cookie-parser');
-var mongoose = require('mongoose');
 var Book= require('./models/books.model');
+
+
+//config mongoose
+var mongoose = require('mongoose');
+ mongoose.set('useNewUrlParser', true);
+ mongoose.set('useFindAndModify', false);
 
 
 
