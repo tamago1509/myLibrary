@@ -32,7 +32,7 @@ cloudinary.config({
   api_secret: process.env.api_secret 
 });
 
-const multerUploads = multer({ storage }).single('avatarURL');
+const multerUploads = multer({ storage }).single('image');
 
 //config mongoose
 var mongoose = require('mongoose');
@@ -94,7 +94,7 @@ module.exports.postIndex = function(req, res){
 							name: req.body.name,
 							email: req.body.email,
 							password: hash,
-							avatarURL: result.url
+							image: result.url
 						})
 						return newUser.save()
 

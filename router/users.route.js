@@ -5,7 +5,7 @@ var controller = require('../controllers/users.controllers');
 //config multer
 var multer  = require('multer')
 const storage = multer.memoryStorage();
-const multerUploads = multer({ storage }).single('avatarURL');
+const multerUploads = multer({ storage }).single('image');
 
 var upload = multer({ dest: './public/uploads/' })
 

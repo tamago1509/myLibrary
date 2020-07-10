@@ -17,7 +17,7 @@ module.exports.postIndex = async function(req, res){
 			const newBook = new Book({
 				title: req.body.title,
 				decs: req.body.decs,
-				img: result.url
+				image: result.url
 			})
 			return newBook.save()
 
