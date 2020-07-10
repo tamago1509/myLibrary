@@ -56,14 +56,17 @@ cloudinary.config({
 //multer middlewares
 const multerUploads = multer({ storage }).single('image');
 //
+const uri = process.env.SECRETE_URL
+mongoose
+.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.SECRETE_URL;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("books");
-  // perform actions on the collection object
-  client.close();
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("connected to mongo Atlas")
 });
 //config
 var iconPath= path.join(__dirname, "public","favicon.ico")
